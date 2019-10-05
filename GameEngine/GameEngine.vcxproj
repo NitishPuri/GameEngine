@@ -10,6 +10,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameEngine.h" />
+    <ClInclude Include="src\GameEngine\Application.h" />
+    <ClInclude Include="src\GameEngine\Core.h" />
+    <ClInclude Include="src\GameEngine\EntryPoint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameEngine\Application.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{94DED1E0-5BA6-4D33-B3C9-2D02872CCE79}</ProjectGuid>
@@ -56,6 +65,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>GE_PLATFORM_WINDOWS;GE_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -72,12 +82,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Test.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
