@@ -7,7 +7,7 @@
 
 namespace GE {
 
-  VertexBuffer * VertexBuffer::Create(float * vertices, uint32_t size)
+  VertexBuffer * VertexBuffer::Create(float* vertices, uint32_t size)
   {
     switch (Renderer::GetAPI())
     {
