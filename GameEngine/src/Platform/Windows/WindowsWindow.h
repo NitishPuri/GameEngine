@@ -2,7 +2,9 @@
 
 #include "GameEngine/Window.h"
 
-#include "GLFW/glfw3.h"
+#include "GameEngine/Renderer/GraphicsContext.h"
+
+#include <GLFW/glfw3.h>
 
 namespace GE {
 
@@ -33,6 +35,7 @@ namespace GE {
 
   private:
     GLFWwindow* m_Window;
+    GraphicsContext* m_Context;
 
     struct WindowData {
       std::string Title;
