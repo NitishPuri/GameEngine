@@ -63,11 +63,6 @@ namespace GE {
 
   }
 
-
-  Application::~Application()
-  {
-  }
-
   void Application::Run()
   {    
     while (m_Running) {
