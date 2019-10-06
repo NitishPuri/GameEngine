@@ -1,8 +1,7 @@
 workspace "GameEngine"
   architecture "x64"
 
-  configurations
-  {
+  configurations {
     "Debug",
     "Release",
     "Dist"
@@ -27,16 +26,20 @@ project "GameEngine"
   pchheader "gepch.h"
   pchsource "GameEngine/src/gepch.cpp"
 
-  files 
-  {
+  files {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp"
   }
 
-  includedirs
-  {
+  includedirs {
     "%{prj.name}/src",
-    "%{prj.name}/vendor/spdlog/include"
+    "%{prj.name}/vendor/spdlog/include",
+    "%{IncludeDir.GLFW}"
+  }
+
+  links{
+    "GLFW",
+    "opengl32.lib"
   }
 
   filter "system:windows"
@@ -44,14 +47,12 @@ project "GameEngine"
     staticruntime "On"
     systemversion "latest"
 
-      defines
-      {
+      defines {
         "GE_PLATFORM_WINDOWS",
         "GE_BUILD_DLL"
       }
 
-      postbuildcommands
-      {
+      postbuildcommands {
         ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
       }
 
@@ -76,20 +77,17 @@ project "Sandbox"
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-  files 
-  {
+  files {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp"
   }
 
-  includedirs
-  {
+  includedirs {
     "GameEngine/vendor/spdlog/include",
     "GameEngine/src"
   }
 
-  links
-  {
+  links {
     "GameEngine"
   }
 
@@ -98,8 +96,7 @@ project "Sandbox"
     staticruntime "On"
     systemversion "latest"
 
-      defines
-      {
+      defines {
         "GE_PLATFORM_WINDOWS",
       }
 
