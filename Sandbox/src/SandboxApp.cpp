@@ -28,6 +28,7 @@ public:
   Sandbox()
   {
     PushLayer(new ExampleLayer());
+    PushLayer(new GE::ImGuiLayer());
   }
 
   ~Sandbox()
