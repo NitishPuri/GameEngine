@@ -8,3 +8,4 @@
 /GameEngine/vendor/Glad/bin/
 /GameEngine/vendor/Glad/bin-int/
 *.vcxproj.user
+/Sandbox/imgui.ini
