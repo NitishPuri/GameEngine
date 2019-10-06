@@ -11,12 +11,19 @@ public:
 
   void OnUpdate() override
   {
-    GE_INFO("ExampleLayer::Update");
+    if (GE::Input::IsKeyPressed(GE_KEY_TAB))
+      GE_TRACE("Tab key is pressed (poll)!");
   }
 
   void OnEvent(GE::Event& event) override
   {
-    GE_TRACE("{0}", event);
+    if (event.GetEventType() == GE::EventType::KeyPressed)
+    {
+      GE::KeyPressedEvent& e = (GE::KeyPressedEvent&)event;
+      if (e.GetKeyCode() == GE_KEY_TAB)
+        GE_TRACE("Tab key is pressed (event)!");
+      GE_TRACE("{0}", (char)e.GetKeyCode());
+    }
   }
 
 };
