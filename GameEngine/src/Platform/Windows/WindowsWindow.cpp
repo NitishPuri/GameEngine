@@ -5,6 +5,8 @@
 #include "GameEngine/Events/MouseEvent.h"
 #include "GameEngine/Events/KeyEvent.h"
 
+#include "glad/glad.h"
+
 namespace GE {
 
   static bool s_GLFWInitialized = false;
@@ -71,6 +73,8 @@ namespace GE {
                                 nullptr, nullptr);
 
     glfwMakeContextCurrent(m_Window);
+    int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    GE_CORE_ASSERT(status, "Failed to intialize Glad!");
     glfwSetWindowUserPointer(m_Window, &m_Data);
     SetVSync(true);
 

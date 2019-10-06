@@ -5,3 +5,5 @@
 *.vcxproj.filters
 *.sln
 *.hint
+/GameEngine/vendor/Glad/bin/
+/GameEngine/vendor/Glad/bin-int/
