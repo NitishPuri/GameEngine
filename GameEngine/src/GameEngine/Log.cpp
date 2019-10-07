@@ -5,8 +5,8 @@
 
 namespace GE {
 
-  std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
-  std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
+  GE::Ref<spdlog::logger> Log::s_CoreLogger;
+  GE::Ref<spdlog::logger> Log::s_ClientLogger;
 
   void Log::Init()
   {

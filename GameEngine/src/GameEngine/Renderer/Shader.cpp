@@ -6,7 +6,7 @@
 
 namespace GE {
 
-  Shader * Shader::Create(const std::string & vertexSrc, const std::string & fragmentSrc)
+  Shader* Shader::Create(const std::string & vertexSrc, const std::string & fragmentSrc)
   {
     switch (Renderer::GetAPI())
     {
