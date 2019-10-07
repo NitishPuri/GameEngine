@@ -89,7 +89,7 @@ public:
       }
     )";
 
-    m_Shader.reset(new GE::Shader(vertexSrc, fragmentSrc));
+    m_Shader.reset(GE::Shader::Create(vertexSrc, fragmentSrc));
 
     std::string blueShaderVertexSrc = R"(
       #version 330 core
@@ -118,7 +118,7 @@ public:
       }
     )";
 
-    m_BlueShader.reset(new GE::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+    m_BlueShader.reset(GE::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 
   }
 
