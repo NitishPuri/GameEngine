@@ -3,11 +3,11 @@
 
 namespace GE {
 
-  Renderer::SceneData* Renderer::m_ScenData = new Renderer::SceneData;
+  Renderer::SceneData* Renderer::s_ScenData = new Renderer::SceneData;
 
   void Renderer::BeginScene(OrthographicCamera& camera)
   {
-    m_ScenData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
+    s_ScenData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
   }
 
   void Renderer::EndScene()
@@ -18,7 +18,7 @@ namespace GE {
                         const std::shared_ptr<VertexArray>& vertexArray)
   {
     shader->Bind();
-    shader->UploadUniformMat4("u_ViewProjection", m_ScenData->ViewProjectionMatrix);
+    shader->UploadUniformMat4("u_ViewProjection", s_ScenData->ViewProjectionMatrix);
 
     vertexArray->Bind();
     RenderCommand::DrawIndexed(vertexArray);

@@ -23,6 +23,6 @@ namespace GE {
       glm::mat4 ViewProjectionMatrix;
     };
 
-    static SceneData* m_ScenData;
+    static SceneData* s_ScenData;
   };
 }
