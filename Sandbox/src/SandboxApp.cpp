@@ -145,6 +145,16 @@ public:
     if (GE::Input::IsKeyPressed(GE_KEY_D))
       m_CameraRotation -= m_CameraRotationSpeed * ts;
 
+    if (GE::Input::IsKeyPressed(GE_KEY_J))
+      m_SquarePosition.x += m_SquareMoveSpeed * ts;
+    if (GE::Input::IsKeyPressed(GE_KEY_L))
+      m_SquarePosition.x -= m_SquareMoveSpeed * ts;
+
+    if (GE::Input::IsKeyPressed(GE_KEY_I))
+      m_SquarePosition.y += m_SquareMoveSpeed * ts;
+    if (GE::Input::IsKeyPressed(GE_KEY_K))
+      m_SquarePosition.y -= m_SquareMoveSpeed * ts;
+
     GE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
     GE::RenderCommand::Clear();
 
@@ -162,8 +172,8 @@ public:
     {
       for (int x = 0; x < 20; x++)
       {
-        glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-        glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+        glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f) ;
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos + + m_SquarePosition) * scale;
         GE::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
       }
     }
@@ -196,6 +206,9 @@ private:
   GE::OrthographicCamera m_Camera;
   glm::vec3 m_CameraPosition;
   float m_CameraMoveSpeed = 5.0f;
+
+  glm::vec3 m_SquarePosition = {0.f, 0.f, 0.f};
+  float m_SquareMoveSpeed = 0.5f;
 
   float m_CameraRotation = 0.0f;
   float m_CameraRotationSpeed = 180.0f;
