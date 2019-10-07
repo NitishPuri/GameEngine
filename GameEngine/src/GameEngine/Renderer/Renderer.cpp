@@ -2,14 +2,24 @@
 #include "Renderer.h"
 
 namespace GE {
-  void Renderer::BeginScene()
+
+  Renderer::SceneData* Renderer::m_ScenData = new Renderer::SceneData;
+
+  void Renderer::BeginScene(OrthographicCamera& camera)
   {
+    m_ScenData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
   }
+
   void Renderer::EndScene()
   {
   }
-  void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+
+  void Renderer::Submit(const std::shared_ptr<Shader>& shader, 
+                        const std::shared_ptr<VertexArray>& vertexArray)
   {
+    shader->Bind();
+    shader->UploadUniformMat4("u_ViewProjection", m_ScenData->ViewProjectionMatrix);
+
     vertexArray->Bind();
     RenderCommand::DrawIndexed(vertexArray);
   }
