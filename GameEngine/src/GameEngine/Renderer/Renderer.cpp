@@ -7,6 +7,11 @@ namespace GE {
 
   Renderer::SceneData* Renderer::s_ScenData = new Renderer::SceneData;
 
+  void Renderer::Init()
+  {
+    RenderCommand::Init();
+  }
+
   void Renderer::BeginScene(OrthographicCamera& camera)
   {
     s_ScenData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
