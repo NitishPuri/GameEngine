@@ -94,7 +94,7 @@ public:
       }
     )";
 
-    m_Shader.reset(GE::Shader::Create(vertexSrc, fragmentSrc));
+    m_Shader = GE::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
     std::string flatColorShaderVertexSrc = R"(
       #version 330 core
@@ -126,15 +126,15 @@ public:
       }
     )";
 
-    m_FlatColorShader.reset(GE::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+    m_FlatColorShader = GE::Shader::Create("FlatColorShader", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
 
-    m_TextureShader.reset(GE::Shader::Create("assets/shaders/Texture.glsl"));
+    auto textureShader = m_shaderLibrary.Load("assets/shaders/Texture.glsl");
 
     m_Texture = GE::Texture2D::Create("assets/textures/logo2.png");
 
-    std::dynamic_pointer_cast<GE::OpenGLShader>(m_TextureShader)->Bind();
-    std::dynamic_pointer_cast<GE::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+    std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->Bind();
+    std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
   }
 
@@ -193,8 +193,10 @@ public:
 
     //GE::Renderer::Submit(m_Shader, m_VertexArray);
 
+    auto textureShader = m_shaderLibrary.Get("Texture");
+
     m_Texture->Bind();
-    GE::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    GE::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
     GE::Renderer::EndScene();
   }
@@ -220,7 +222,8 @@ private:
   GE::Ref<GE::Shader> m_FlatColorShader;
   GE::Ref<GE::VertexArray> m_SquareVA;
 
-  GE::Ref<GE::Shader> m_TextureShader;
+  GE::ShaderLibrary m_shaderLibrary;
+
   GE::Ref<GE::Texture> m_Texture;
 
   GE::OrthographicCamera m_Camera;
