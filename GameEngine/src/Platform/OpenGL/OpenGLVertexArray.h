@@ -20,6 +20,7 @@ namespace GE {
     virtual const GE::Ref<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; }
   private:
     uint32_t m_RendererID;
+    uint32_t m_VertexBufferIndex = 0;
     std::vector<GE::Ref<VertexBuffer>> m_VertexBuffers;
     GE::Ref<IndexBuffer> m_IndexBuffer;
   };
