@@ -6,6 +6,9 @@ workspace "GameEngine"
     "Release",
     "Dist"
   }
+  flags {
+    "MultiProcessorCompile"
+  }
   
   startproject "Sandbox"
 
