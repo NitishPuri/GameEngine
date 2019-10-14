@@ -9,7 +9,7 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
-#include "GameEngine/Application.h"
+#include "GameEngine/Core/Application.h"
 
 namespace GE {
 

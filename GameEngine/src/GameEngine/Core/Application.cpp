@@ -1,7 +1,7 @@
 #include "gepch.h"
 #include "Application.h"
 
-#include "Events/ApplicationEvent.h"
+#include "GameEngine/Events/ApplicationEvent.h"
 
 #include "GameEngine/Renderer/Renderer.h"
 

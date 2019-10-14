@@ -1,11 +1,13 @@
-/bin/
-/bin-int/
+# Binaries
+**/bin/
+!vendor/bin/premake/
+bin-int/
+
+# Visual Studio files and folder
 /.vs/
-*.vcxproj
-*.vcxproj.filters
-*.sln
-*.hint
-/GameEngine/vendor/Glad/bin/
-/GameEngine/vendor/Glad/bin-int/
-*.vcxproj.user
+**.vcxproj
+**.vcxproj.filters
+**.sln
+**.hint
+**.vcxproj.user
 /Sandbox/imgui.ini
