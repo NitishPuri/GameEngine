@@ -13,8 +13,7 @@ class ExampleLayer : public GE::Layer
 public:
   ExampleLayer()
     : Layer("Example")
-    , m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
-    , m_CameraPosition(0.0f)
+    , m_CameraController(1280.f/720.0f, true)
   {
     m_VertexArray.reset(GE::VertexArray::Create());
 
@@ -140,20 +139,8 @@ public:
 
   void OnUpdate(GE::Timestep ts) override
   {
-    if (GE::Input::IsKeyPressed(GE_KEY_LEFT))
-      m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-    else if (GE::Input::IsKeyPressed(GE_KEY_RIGHT))
-      m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-    if (GE::Input::IsKeyPressed(GE_KEY_UP))
-      m_CameraPosition.y += m_CameraMoveSpeed * ts;
-    else if (GE::Input::IsKeyPressed(GE_KEY_DOWN))
-      m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-    if (GE::Input::IsKeyPressed(GE_KEY_A))
-      m_CameraRotation += m_CameraRotationSpeed * ts;
-    if (GE::Input::IsKeyPressed(GE_KEY_D))
-      m_CameraRotation -= m_CameraRotationSpeed * ts;
+    // Update
+    m_CameraController.onUpdate(ts);
 
     if (GE::Input::IsKeyPressed(GE_KEY_J))
       m_SquarePosition.x += m_SquareMoveSpeed * ts;
@@ -168,10 +155,8 @@ public:
     GE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
     GE::RenderCommand::Clear();
 
-    m_Camera.SetPosition(m_CameraPosition);
-    m_Camera.SetRotation(m_CameraRotation);
-
-    GE::Renderer::BeginScene(m_Camera);
+    // Render
+    GE::Renderer::BeginScene(m_CameraController.GetCamera());
 
     glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -211,8 +196,9 @@ public:
   }
 
 
-  void OnEvent(GE::Event& event) override
+  void OnEvent(GE::Event& e) override
   {
+    m_CameraController.OnEvent(e);
   }
 
 private:
@@ -226,16 +212,10 @@ private:
 
   GE::Ref<GE::Texture> m_Texture;
 
-  GE::OrthographicCamera m_Camera;
-  glm::vec3 m_CameraPosition;
-  float m_CameraMoveSpeed = 5.0f;
+  GE::OrthographicCameraController m_CameraController;
 
   glm::vec3 m_SquarePosition = {0.f, 0.f, 0.f};
   float m_SquareMoveSpeed = 0.5f;
-
-  float m_CameraRotation = 0.0f;
-  float m_CameraRotationSpeed = 180.0f;
-
   glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
   glm::vec3 m_SquareColorAlt = { 0.8f, 0.3f, 0.2f };
 };
