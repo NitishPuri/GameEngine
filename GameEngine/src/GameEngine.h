@@ -26,8 +26,3 @@
 
 #include "GameEngine/Renderer/OrthographicCamera.h"
 // -----------------------------------
-
-
-// ---- Entry Point -------------------------------
-#include "GameEngine/Core/EntryPoint.h"
-// ---- Entry Point -------------------------------
