@@ -5,7 +5,7 @@
 
 namespace GE {
 
-  Renderer::SceneData* Renderer::s_ScenData = new Renderer::SceneData;
+  Scope<Renderer::SceneData> Renderer::s_ScenData = CreateScope<Renderer::SceneData>();
 
   void Renderer::Init()
   {

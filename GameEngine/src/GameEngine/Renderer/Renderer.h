@@ -27,6 +27,6 @@ namespace GE {
       glm::mat4 ViewProjectionMatrix;
     };
 
-    static SceneData* s_ScenData;
+    static Scope<SceneData> s_ScenData;
   };
 }
