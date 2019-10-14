@@ -60,8 +60,6 @@ namespace GE {
         break;
       }
     }
-
-    GE_CORE_TRACE("{0}", e);
   }
 
   void Application::PushLayer(Layer * layer)
