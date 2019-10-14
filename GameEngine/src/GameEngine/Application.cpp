@@ -31,11 +31,12 @@ namespace GE {
     {
       float time = (float)glfwGetTime();
       Timestep timestep = time - m_LastFrameTime;
-
       m_LastFrameTime = time;
 
-      for (Layer* layer : m_LayerStack) {
-        layer->OnUpdate(timestep);
+      if (!m_Minimized) {
+        for (Layer* layer : m_LayerStack) {
+          layer->OnUpdate(timestep);
+        }
       }
 
       m_ImGuiLayer->Begin();
@@ -51,6 +52,7 @@ namespace GE {
   {
     EventDispatcher dispatcher(e);
     dispatcher.Dispatch<WindowCloseEvent>(GE_BIND_EVENT_FN(Application::OnWindowClose));
+    dispatcher.Dispatch<WindowResizeEvent>(GE_BIND_EVENT_FN(Application::OnWindowResize));
 
     for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
       (*--it)->OnEvent(e);
@@ -72,10 +74,22 @@ namespace GE {
     m_LayerStack.PushOverlay(overlay);
   }
 
-  bool Application::OnWindowClose(WindowCloseEvent & e)
+  bool Application::OnWindowClose(WindowCloseEvent& e)
   {
     m_Running = false;
     return true;
   }
 
+  bool Application::OnWindowResize(WindowResizeEvent& e)
+  {
+    if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+      m_Minimized = true;
+      return false;
+    }
+
+    m_Minimized = false;
+    Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+    
+    return true;
+  }
 }
