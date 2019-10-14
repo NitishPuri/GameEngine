@@ -28,7 +28,7 @@ Game Engine based on Hazel engine.
 * Index Buffer
 * Texture
 * Shader
-* Staes
+* States
 * Pipelines
 * Render passes
 
@@ -47,6 +47,23 @@ Game Engine based on Hazel engine.
 * Other things
     * reflections, ambient occlusion, ...
 
+## 2D Renderer 
+* `Renderer2D::BeginScene()`
+* `Renderer2D::DrawQuad(pos, size, color, texture)`
+* Batch renderer    
+    * 100k quads , 60fps, w/ textures, 
+* Texture Atlas, 100-200 textures
+* Animation
+* UI - Layouts, aspect ratio,  
+* PostFx - Particles, HDR, Blur, LUT
 
+## 2D Game
+* Interaction
+* Sripting - Lua
+* ECS(Entity Component System)/CGO (Composable Game Objects) 
+    * *Player*
+        * *Transform*
+        * *Renderer*
+        * *Script*
 
 
