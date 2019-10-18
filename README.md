@@ -11,13 +11,15 @@ Game Engine based on Hazel engine.
 * Render API abstraction
 * Debugging support
 * Scripting language
-* Memory Systems
+* Memory Systems 
+    * Detect leaks, tagging, ...
 * Entity-Component System
 * Physics
 * File I/O, VFS
 * Build system, asets
 * Audio
 * AI
+* Profiling tools
 ...
 
 ## Render API(API/platform specific)
