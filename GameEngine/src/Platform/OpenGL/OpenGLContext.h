@@ -5,13 +5,13 @@
 struct GLFWwindow;
 
 namespace GE {
-  class OpenGLContext : public GraphicsContext {
-  public:
-    OpenGLContext(GLFWwindow* window);
+    class OpenGLContext : public GraphicsContext {
+    public:
+        OpenGLContext(GLFWwindow* window);
 
-    void Init() override;
-    void SwapBuffers() override;
-  private:
-    GLFWwindow* m_WindowHandle;
-  };
+        void Init() override;
+        void SwapBuffers() override;
+    private:
+        GLFWwindow* m_WindowHandle;
+    };
 }

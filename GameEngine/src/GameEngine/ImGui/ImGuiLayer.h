@@ -8,21 +8,21 @@
 
 namespace GE {
 
-  class GE_API ImGuiLayer : public Layer
-  {
-  public:
-    ImGuiLayer();
-    ~ImGuiLayer() = default;
+    class GE_API ImGuiLayer : public Layer
+    {
+    public:
+        ImGuiLayer();
+        ~ImGuiLayer() = default;
 
-    void OnAttach() override;
-    void OnDetach() override;
-    virtual void OnImGuiRender() override;
+        void OnAttach() override;
+        void OnDetach() override;
+        virtual void OnImGuiRender() override;
 
-    void Begin();
-    void End();
+        void Begin();
+        void End();
 
-  private:
-    float m_Time = 0.0f;
-  };
+    private:
+        float m_Time = 0.0f;
+    };
 
 }

@@ -33,7 +33,7 @@ namespace GE {
         squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
         squareVB->SetLayout({
             { ShaderDataType::Float3, "a_Position" }
-        });
+            });
 
         s_Data->QuadVertexArray->AddVertexBuffer(squareVB);
 

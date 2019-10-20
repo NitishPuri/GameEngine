@@ -60,15 +60,15 @@
 #endif // End of DLL support
 
 #ifdef GE_DEBUG
-  #define GE_ENABLE_ASSERTS
+#define GE_ENABLE_ASSERTS
 #endif
 
 #ifdef GE_ENABLE_ASSERTS
-  #define GE_ASSERT(x, ...) { if(!(x)) { GE_ERROR("Asserion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define GE_CORE_ASSERT(x, ...) { if(!(x)) { GE_CORE_ERROR("Asserion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define GE_ASSERT(x, ...) { if(!(x)) { GE_ERROR("Asserion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define GE_CORE_ASSERT(x, ...) { if(!(x)) { GE_CORE_ERROR("Asserion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else // GE_ENABLE_ASSERTS
-  #define GE_ASSERT(x, ...) 
-  #define GE_CORE_ASSERT(x, ...) 
+#define GE_ASSERT(x, ...) 
+#define GE_CORE_ASSERT(x, ...) 
 #endif // GE_ENABLE_ASSERTS
 
 #define BIT(x) (1 << x)
@@ -77,20 +77,20 @@
 
 namespace GE {
 
-  template<typename T>
-  using Scope = std::unique_ptr<T>;
-  template<typename T, typename ... Args>
-  constexpr Scope<T> CreateScope(Args&& ...args)
-  {
-    return std::make_unique<T>(std::forward<Args>(args)...);
-  }
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+    template<typename T, typename ... Args>
+    constexpr Scope<T> CreateScope(Args&& ...args)
+    {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
 
-  template<typename T>
-  using Ref = std::shared_ptr<T>;
-  template<typename T, typename ... Args>
-  constexpr Ref<T> CreateRef(Args&& ...args)
-  {
-    return std::make_shared<T>(std::forward<Args>(args)...);
-  }
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+    template<typename T, typename ... Args>
+    constexpr Ref<T> CreateRef(Args&& ...args)
+    {
+        return std::make_shared<T>(std::forward<Args>(args)...);
+    }
 
 }

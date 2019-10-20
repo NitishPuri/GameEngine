@@ -14,56 +14,56 @@
 class ExampleLayer : public GE::Layer
 {
 public:
-  ExampleLayer()
-    : Layer("Example")
-    , m_CameraController(1280.f/720.0f, true)
-  {
-    m_VertexArray = GE::VertexArray::Create();
+    ExampleLayer()
+        : Layer("Example")
+        , m_CameraController(1280.f / 720.0f, true)
+    {
+        m_VertexArray = GE::VertexArray::Create();
 
-    float vertices[3 * 7] = {
-      -0.5f, -0.5f, 0.0f,   0.8f, 0.2f, 0.8f, 1.0f,
-       0.5f, -0.5f, 0.0f,   0.2f, 0.3f, 0.8f, 1.0f,
-       0.0f,  0.5f, 0.0f,   0.8f, 0.8f, 0.2f, 1.0f
-    };
-    GE::Ref<GE::VertexBuffer> vertexBuffer;
-    vertexBuffer.reset(GE::VertexBuffer::Create(vertices, sizeof(vertices)));
-    GE::BufferLayout layout = {
-      { GE::ShaderDataType::Float3, "a_Position" },
-      { GE::ShaderDataType::Float4, "a_Color" }
-    };
+        float vertices[3 * 7] = {
+          -0.5f, -0.5f, 0.0f,   0.8f, 0.2f, 0.8f, 1.0f,
+           0.5f, -0.5f, 0.0f,   0.2f, 0.3f, 0.8f, 1.0f,
+           0.0f,  0.5f, 0.0f,   0.8f, 0.8f, 0.2f, 1.0f
+        };
+        GE::Ref<GE::VertexBuffer> vertexBuffer;
+        vertexBuffer.reset(GE::VertexBuffer::Create(vertices, sizeof(vertices)));
+        GE::BufferLayout layout = {
+          { GE::ShaderDataType::Float3, "a_Position" },
+          { GE::ShaderDataType::Float4, "a_Color" }
+        };
 
-    vertexBuffer->SetLayout(layout);
-    m_VertexArray->AddVertexBuffer(vertexBuffer);
+        vertexBuffer->SetLayout(layout);
+        m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-    unsigned int indices[3] = { 0, 1, 2 };
-    GE::Ref<GE::IndexBuffer> indexBuffer;
-    indexBuffer.reset(GE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-    m_VertexArray->SetIndexBuffer(indexBuffer);
+        unsigned int indices[3] = { 0, 1, 2 };
+        GE::Ref<GE::IndexBuffer> indexBuffer;
+        indexBuffer.reset(GE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        m_VertexArray->SetIndexBuffer(indexBuffer);
 
-    m_SquareVA = GE::VertexArray::Create();
+        m_SquareVA = GE::VertexArray::Create();
 
-    float squareVertices[5 * 4] = {
-      -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-       0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-       0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-      -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-    };
+        float squareVertices[5 * 4] = {
+          -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+           0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+           0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+          -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+        };
 
-    GE::Ref<GE::VertexBuffer> squareVB;
-    squareVB.reset(GE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-    squareVB->SetLayout({
-      { GE::ShaderDataType::Float3, "a_Position" },
-      { GE::ShaderDataType::Float2, "a_TexCoord" }
-    });
+        GE::Ref<GE::VertexBuffer> squareVB;
+        squareVB.reset(GE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        squareVB->SetLayout({
+          { GE::ShaderDataType::Float3, "a_Position" },
+          { GE::ShaderDataType::Float2, "a_TexCoord" }
+            });
 
-    m_SquareVA->AddVertexBuffer(squareVB);
+        m_SquareVA->AddVertexBuffer(squareVB);
 
-    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-    GE::Ref<GE::IndexBuffer> squareIB;
-    squareIB.reset(GE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-    m_SquareVA->SetIndexBuffer(squareIB);
+        uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+        GE::Ref<GE::IndexBuffer> squareIB;
+        squareIB.reset(GE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        m_SquareVA->SetIndexBuffer(squareIB);
 
-    std::string vertexSrc = R"(
+        std::string vertexSrc = R"(
       #version 330 core
       
       layout(location = 0) in vec3 a_Position;
@@ -83,7 +83,7 @@ public:
       }
     )";
 
-    std::string fragmentSrc = R"(
+        std::string fragmentSrc = R"(
       #version 330 core
       
       layout(location = 0) out vec4 color;
@@ -96,9 +96,9 @@ public:
       }
     )";
 
-    m_Shader = GE::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+        m_Shader = GE::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
-    std::string flatColorShaderVertexSrc = R"(
+        std::string flatColorShaderVertexSrc = R"(
       #version 330 core
       
       layout(location = 0) in vec3 a_Position;
@@ -114,7 +114,7 @@ public:
       }
     )";
 
-    std::string flatColorShaderFragmentSrc = R"(
+        std::string flatColorShaderFragmentSrc = R"(
       #version 330 core
       
       layout(location = 0) out vec4 color;
@@ -128,117 +128,117 @@ public:
       }
     )";
 
-    m_FlatColorShader = GE::Shader::Create("FlatColorShader", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+        m_FlatColorShader = GE::Shader::Create("FlatColorShader", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
 
-    auto textureShader = m_shaderLibrary.Load("assets/shaders/Texture.glsl");
+        auto textureShader = m_shaderLibrary.Load("assets/shaders/Texture.glsl");
 
-    m_Texture = GE::Texture2D::Create("assets/textures/logo2.png");
+        m_Texture = GE::Texture2D::Create("assets/textures/logo2.png");
 
-    std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->Bind();
-    std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+        std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->Bind();
+        std::dynamic_pointer_cast<GE::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
-  }
-
-  void OnUpdate(GE::Timestep ts) override
-  {
-    // Update
-    m_CameraController.onUpdate(ts);
-
-    if (GE::Input::IsKeyPressed(GE_KEY_J))
-      m_SquarePosition.x += m_SquareMoveSpeed * ts;
-    if (GE::Input::IsKeyPressed(GE_KEY_L))
-      m_SquarePosition.x -= m_SquareMoveSpeed * ts;
-
-    if (GE::Input::IsKeyPressed(GE_KEY_I))
-      m_SquarePosition.y += m_SquareMoveSpeed * ts;
-    if (GE::Input::IsKeyPressed(GE_KEY_K))
-      m_SquarePosition.y -= m_SquareMoveSpeed * ts;
-
-
-    // Render
-    GE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-    GE::RenderCommand::Clear();
-
-    GE::Renderer::BeginScene(m_CameraController.GetCamera());
-
-    glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-    std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->Bind();
-
-    for (int y = 0; y < 20; y++) {
-      for (int x = 0; x < 20; x++) {
-        if ( (x + y) % 2 == 0) {
-          std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-        }
-        else {
-          std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColorAlt);
-        }
-        glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f) ;
-        glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos + m_SquarePosition) * scale;
-        GE::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
-      }
     }
 
-    //GE::Renderer::Submit(m_Shader, m_VertexArray);
+    void OnUpdate(GE::Timestep ts) override
+    {
+        // Update
+        m_CameraController.onUpdate(ts);
 
-    auto textureShader = m_shaderLibrary.Get("Texture");
+        if (GE::Input::IsKeyPressed(GE_KEY_J))
+            m_SquarePosition.x += m_SquareMoveSpeed * ts;
+        if (GE::Input::IsKeyPressed(GE_KEY_L))
+            m_SquarePosition.x -= m_SquareMoveSpeed * ts;
 
-    m_Texture->Bind();
-    GE::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-    GE::Renderer::EndScene();
-  }
-
-  virtual void OnImGuiRender() override
-  {
-    ImGui::Begin("Test");
-    ImGui::Text("Hello World");
-    ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
-    ImGui::ColorEdit3("Square Color Alt", glm::value_ptr(m_SquareColorAlt));
-    ImGui::End();
-  }
+        if (GE::Input::IsKeyPressed(GE_KEY_I))
+            m_SquarePosition.y += m_SquareMoveSpeed * ts;
+        if (GE::Input::IsKeyPressed(GE_KEY_K))
+            m_SquarePosition.y -= m_SquareMoveSpeed * ts;
 
 
-  void OnEvent(GE::Event& e) override
-  {
-    m_CameraController.OnEvent(e);
-  }
+        // Render
+        GE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+        GE::RenderCommand::Clear();
+
+        GE::Renderer::BeginScene(m_CameraController.GetCamera());
+
+        glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+        std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->Bind();
+
+        for (int y = 0; y < 20; y++) {
+            for (int x = 0; x < 20; x++) {
+                if ((x + y) % 2 == 0) {
+                    std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+                }
+                else {
+                    std::dynamic_pointer_cast<GE::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColorAlt);
+                }
+                glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos + m_SquarePosition) * scale;
+                GE::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
+            }
+        }
+
+        //GE::Renderer::Submit(m_Shader, m_VertexArray);
+
+        auto textureShader = m_shaderLibrary.Get("Texture");
+
+        m_Texture->Bind();
+        GE::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+        GE::Renderer::EndScene();
+    }
+
+    virtual void OnImGuiRender() override
+    {
+        ImGui::Begin("Test");
+        ImGui::Text("Hello World");
+        ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+        ImGui::ColorEdit3("Square Color Alt", glm::value_ptr(m_SquareColorAlt));
+        ImGui::End();
+    }
+
+
+    void OnEvent(GE::Event& e) override
+    {
+        m_CameraController.OnEvent(e);
+    }
 
 private:
-  GE::Ref<GE::Shader> m_Shader;
-  GE::Ref<GE::VertexArray> m_VertexArray;
+    GE::Ref<GE::Shader> m_Shader;
+    GE::Ref<GE::VertexArray> m_VertexArray;
 
-  GE::Ref<GE::Shader> m_FlatColorShader;
-  GE::Ref<GE::VertexArray> m_SquareVA;
+    GE::Ref<GE::Shader> m_FlatColorShader;
+    GE::Ref<GE::VertexArray> m_SquareVA;
 
-  GE::ShaderLibrary m_shaderLibrary;
+    GE::ShaderLibrary m_shaderLibrary;
 
-  GE::Ref<GE::Texture> m_Texture;
+    GE::Ref<GE::Texture> m_Texture;
 
-  GE::OrthographicCameraController m_CameraController;
+    GE::OrthographicCameraController m_CameraController;
 
-  glm::vec3 m_SquarePosition = {0.f, 0.f, 0.f};
-  float m_SquareMoveSpeed = 0.5f;
-  glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
-  glm::vec3 m_SquareColorAlt = { 0.8f, 0.3f, 0.2f };
+    glm::vec3 m_SquarePosition = { 0.f, 0.f, 0.f };
+    float m_SquareMoveSpeed = 0.5f;
+    glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+    glm::vec3 m_SquareColorAlt = { 0.8f, 0.3f, 0.2f };
 };
 
 
-class Sandbox : public GE::Application 
+class Sandbox : public GE::Application
 {
 public:
-  Sandbox()
-  {
-    //PushLayer(new ExampleLayer());
-    PushLayer(new Sandbox2D());
-  }
+    Sandbox()
+    {
+        //PushLayer(new ExampleLayer());
+        PushLayer(new Sandbox2D());
+    }
 
-  ~Sandbox()
-  {}
+    ~Sandbox()
+    {}
 };
 
 GE::Application* GE::CreateApplication()
 {
-  return new Sandbox();
+    return new Sandbox();
 }

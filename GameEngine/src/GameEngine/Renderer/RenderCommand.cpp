@@ -4,5 +4,5 @@
 #include "Platform/OpenGL/OpenGLRendererAPI.h"
 
 namespace GE {
-  Scope<RendererAPI> RenderCommand::s_RendererAPI = CreateScope<OpenGLRendererAPI>();
+    Scope<RendererAPI> RenderCommand::s_RendererAPI = CreateScope<OpenGLRendererAPI>();
 }
