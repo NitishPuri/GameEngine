@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameEngine/Renderer/Shader.h"
-#include <glm/glm.hpp>
 
 // TODO: REMOVE!
 typedef unsigned int GLenum;
@@ -17,6 +16,16 @@ namespace GE {
         void Unbind() const override;
 
         const std::string& GetName() const override { return m_Name; }
+
+        void SetInt(const std::string& name, int value);
+
+        void SetFloat(const std::string& name, float value);
+        void SetFloat2(const std::string& name, const glm::vec2& value);
+        void SetFloat3(const std::string& name, const glm::vec3& value);
+        void SetFloat4(const std::string& name, const glm::vec4& value);
+
+        void SetMat3(const std::string& name, const glm::mat3& matrix);
+        void SetMat4(const std::string& name, const glm::mat4& matrix);
 
         void UploadUniformInt(const std::string& name, int value);
 

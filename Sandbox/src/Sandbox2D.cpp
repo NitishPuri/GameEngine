@@ -29,7 +29,9 @@ void Sandbox2D::OnUpdate(GE::Timestep ts)
     GE::RenderCommand::Clear();
 
     GE::Renderer2D::BeginScene(m_CameraController.GetCamera());
-    GE::Renderer2D::DrawQuad({ 0.0F, 0.0F }, { 1.0F, 1.0F }, m_SquareColor);
+    GE::Renderer2D::DrawQuad({ -1.0F, 0.0F }, { 0.8F, 0.8F }, {0.9, 0.1, 0.3, 1.0});
+    GE::Renderer2D::DrawQuad({ 1.0F, 1.0F }, { 1.5F, 1.0F }, m_SquareColor);
+    GE::Renderer2D::DrawQuad({ 1.5F, 0.0F }, { 1.0F, 1.0F }, m_SquareColor);
     GE::Renderer2D::EndScene();
 }
 
