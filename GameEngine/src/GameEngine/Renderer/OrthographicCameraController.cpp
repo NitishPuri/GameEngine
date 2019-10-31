@@ -13,6 +13,12 @@ namespace GE {
     }
     void OrthographicCameraController::onUpdate(Timestep ts)
     {
+        // Exit on escape
+        if (Input::IsKeyPressed(GE_KEY_ESCAPE)) {
+            // quit ?
+            exit(0);
+        }
+
         if (Input::IsKeyPressed(GE_KEY_A)) {
             m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;

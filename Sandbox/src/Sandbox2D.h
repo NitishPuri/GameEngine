@@ -16,12 +16,10 @@ public:
     void OnEvent(GE::Event& e) override;
 
 private:
-
-    // Temp
+    
     GE::OrthographicCameraController m_CameraController;
 
-    GE::Ref<GE::VertexArray> m_SquareVA;
-    GE::Ref<GE::Shader> m_FlatColorShader;
+    GE::Ref<GE::Texture2D> m_CheckrboardTexture;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f , 1.0f };
 };

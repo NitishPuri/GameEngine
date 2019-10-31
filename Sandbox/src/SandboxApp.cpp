@@ -52,7 +52,7 @@ public:
         squareVB->SetLayout({
           { GE::ShaderDataType::Float3, "a_Position" },
           { GE::ShaderDataType::Float2, "a_TexCoord" }
-            });
+        });
 
         m_SquareVA->AddVertexBuffer(squareVB);
 
