@@ -51,10 +51,16 @@ namespace GE {
         std::ifstream in(filepath, std::ios::in | std::ios::binary);
         if (in) {
             in.seekg(0, std::ios::end);
-            result.resize(in.tellg());
-            in.seekg(0, std::ios::beg);
-            in.read(&result[0], result.size());
-            in.close();
+            size_t size = in.tellg();
+            if (size != -1) {
+                result.resize(size);
+                in.seekg(0, std::ios::beg);
+                in.read(&result[0], size);
+                in.close();
+            }
+            else {
+                GE_CORE_ERROR("Could not read from file '{0}'", filepath);
+            }
         }
         else {
             GE_CORE_ERROR("Could not open file '{0}'", filepath);
