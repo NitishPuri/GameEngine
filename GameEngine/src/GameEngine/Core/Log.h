@@ -2,12 +2,12 @@
 
 #include "GameEngine/Core/Core.h"
 
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace GE {
 
-    class GE_API Log
+    class Log
     {
     public:
 

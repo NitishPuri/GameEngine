@@ -4,7 +4,7 @@
 
 namespace GE {
 
-    class GE_API Input
+    class Input
     {
     protected:
         Input() = default;

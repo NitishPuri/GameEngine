@@ -1,5 +1,5 @@
 #pragma once
-#include "RendererAPI.h"
+#include "GameEngine/Renderer/RendererAPI.h"
 
 namespace GE {
 
@@ -25,7 +25,7 @@ namespace GE {
             s_RendererAPI->Clear();
         }
 
-        inline static void DrawIndexed(const GE::Ref<VertexArray>& vertexArray)
+        inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
         {
             s_RendererAPI->DrawIndexed(vertexArray);
         }

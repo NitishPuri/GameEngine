@@ -1,7 +1,7 @@
 #include "gepch.h"
-#include "Shader.h"
+#include "GameEngine/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "GameEngine/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace GE {

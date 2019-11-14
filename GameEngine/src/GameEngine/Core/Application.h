@@ -13,11 +13,11 @@
 
 namespace GE {
 
-    class GE_API Application
+    class Application
     {
     public:
         Application();
-        virtual ~Application() = default;
+        virtual ~Application();
 
         void Run();
 

@@ -1,7 +1,7 @@
 #include "gepch.h"
-#include "OpenGLTexture.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
-#include "stb_image.h"
+#include <stb_image.h>
 
 GE::OpenGLTexture2D::OpenGLTexture2D(const std::string & path)
     : m_Path(path)

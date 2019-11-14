@@ -1,9 +1,11 @@
 #include "gepch.h"
-#include "Application.h"
+#include "GameEngine/Core/Application.h"
 
 #include "GameEngine/Events/ApplicationEvent.h"
 
 #include "GameEngine/Renderer/Renderer.h"
+
+#include "GameEngine/Core/Input.h"
 
 #include <glfw/glfw3.h>
 
@@ -16,13 +18,18 @@ namespace GE {
         GE_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = GE::Scope<Window>(Window::Create());
+        m_Window = Window::Create();
         m_Window->SetEventCallback(GE_BIND_EVENT_FN(Application::OnEvent));
 
         Renderer::Init();
 
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
+    }
+
+    Application::~Application()
+    {
+        Renderer::Shutdown();
     }
 
     void Application::Run()

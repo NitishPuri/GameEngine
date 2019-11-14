@@ -20,7 +20,7 @@ namespace GE {
     };
 
     // Interface representing a desktop based window
-    class GE_API Window
+    class Window
     {
     public:
         using EventCallbackfn = std::function<void(Event&)>;
@@ -38,6 +38,6 @@ namespace GE {
 
         virtual void* GetNativeWindow() const = 0;
 
-        static Window* Create(const WindowProps& props = WindowProps());
+        static Scope<Window> Create(const WindowProps& props = WindowProps());
     };
 }

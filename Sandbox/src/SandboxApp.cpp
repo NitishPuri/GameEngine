@@ -2,7 +2,7 @@
 #include <GameEngine.h>
 #include <GameEngine/Core/EntryPoint.h>
 
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,8 +23,7 @@ public:
            0.5f, -0.5f, 0.0f,   0.2f, 0.3f, 0.8f, 1.0f,
            0.0f,  0.5f, 0.0f,   0.8f, 0.8f, 0.2f, 1.0f
         };
-        GE::Ref<GE::VertexBuffer> vertexBuffer;
-        vertexBuffer.reset(GE::VertexBuffer::Create(vertices, sizeof(vertices)));
+        GE::Ref<GE::VertexBuffer> vertexBuffer = GE::VertexBuffer::Create(vertices, sizeof(vertices));
         GE::BufferLayout layout = {
           { GE::ShaderDataType::Float3, "a_Position" },
           { GE::ShaderDataType::Float4, "a_Color" }
@@ -34,8 +33,7 @@ public:
         m_VertexArray->AddVertexBuffer(vertexBuffer);
 
         unsigned int indices[3] = { 0, 1, 2 };
-        GE::Ref<GE::IndexBuffer> indexBuffer;
-        indexBuffer.reset(GE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        GE::Ref<GE::IndexBuffer> indexBuffer = GE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
         m_VertexArray->SetIndexBuffer(indexBuffer);
 
         m_SquareVA = GE::VertexArray::Create();
@@ -47,18 +45,16 @@ public:
           -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
-        GE::Ref<GE::VertexBuffer> squareVB;
-        squareVB.reset(GE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        GE::Ref<GE::VertexBuffer> squareVB = GE::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
         squareVB->SetLayout({
           { GE::ShaderDataType::Float3, "a_Position" },
           { GE::ShaderDataType::Float2, "a_TexCoord" }
-        });
+            });
 
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-        GE::Ref<GE::IndexBuffer> squareIB;
-        squareIB.reset(GE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        GE::Ref<GE::IndexBuffer> squareIB = GE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         m_SquareVA->SetIndexBuffer(squareIB);
 
         std::string vertexSrc = R"(
