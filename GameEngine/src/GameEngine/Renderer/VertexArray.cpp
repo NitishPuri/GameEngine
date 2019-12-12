@@ -8,6 +8,8 @@ namespace GE {
 
     Ref<VertexArray> VertexArray::Create()
     {
+        GE_PROFILE_FUNCTION();
+
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None:

@@ -13,6 +13,8 @@ namespace GE {
     }
     void OrthographicCameraController::onUpdate(Timestep ts)
     {
+        GE_PROFILE_FUNCTION();
+
         // Exit on escape
         if (Input::IsKeyPressed(GE_KEY_ESCAPE)) {
             // quit ?
@@ -57,6 +59,8 @@ namespace GE {
 
     void OrthographicCameraController::OnEvent(Event & e)
     {
+        GE_PROFILE_FUNCTION();
+
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<MouseScrolledEvent>(GE_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
         dispatcher.Dispatch<WindowResizeEvent>(GE_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
@@ -64,6 +68,8 @@ namespace GE {
 
     bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent & e)
     {
+        GE_PROFILE_FUNCTION();
+
         m_ZoomLevel -= e.GetYOffset() * 0.25f;
         m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
         m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -71,6 +77,8 @@ namespace GE {
     }
     bool OrthographicCameraController::OnWindowResized(WindowResizeEvent & e)
     {
+        GE_PROFILE_FUNCTION();
+
         m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
         m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
         return false;
