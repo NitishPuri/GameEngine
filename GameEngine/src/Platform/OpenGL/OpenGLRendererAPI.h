@@ -12,6 +12,6 @@ namespace GE {
 
         void Clear() override;
 
-        void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
+        void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0) override;
     };
 }
