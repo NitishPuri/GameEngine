@@ -77,7 +77,7 @@ namespace GE {
 
             GE_CORE_INFO("Initializing GLFW");
             int success = glfwInit();
-            GE_CORE_ASSERT(success, "Could not initiaize GLFW");
+            GE_CORE_ASSERT(success, "Could not initialize GLFW");
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
